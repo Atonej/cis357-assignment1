@@ -9,7 +9,14 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, SettingsViewControllerDelegate {
+    func indicateSelection(vice: String) {
+        self.fromLabel!.text = vice
+        self.fromField!.placeholder = prefix + fromLabel!.text!
+        self.toLabel!.text = vice
+        self.toField!.placeholder = prefix + toLabel!.text!
+    }
+    
     
     var ans = 0.0
     var cons : Double = 0
@@ -48,6 +55,12 @@ class ViewController: UIViewController {
 
     @objc func dismissKeyboard(){
         self.view.endEditing(true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? SettingsViewController {
+            dest.delegate = self
+        }
     }
     
     func currentMode(){
@@ -99,11 +112,11 @@ class ViewController: UIViewController {
             
             fromLabel!.text = "Gallons"
             fromField!.placeholder = prefix + fromLabel!.text!
-            fromvolume = .Gallons
+            //fromvolume = .Gallons
             
             toLabel!.text = "Liters"
             toField!.placeholder = prefix + toLabel!.text!
-            tovolume = .Liters
+            //tovolume = .Liters
             
             unit = CalculatorMode.Volume
         }
@@ -113,11 +126,11 @@ class ViewController: UIViewController {
 
             fromLabel!.text = "Yards"
             fromField!.placeholder = prefix + fromLabel!.text!
-            fromlength = .Meters
+            //fromlength = .Meters
 
             toLabel.text = "Meters"
             toField!.placeholder = prefix + toLabel!.text!
-            tolength = .Yards
+            //tolength = .Yards
 
             unit = CalculatorMode.Length
         }
@@ -126,8 +139,12 @@ class ViewController: UIViewController {
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
         //check the current mode setup
         currentMode()
+        if !(fromField.text?.isEmpty)! && !(toField.text?.isEmpty)! {
+             print("Error, cannot have both boxes filled")
+             print("clear out one of the boxes, thank you!")
+            }
         //check the mode and which field to calculate
-        if unit == CalculatorMode.Length && !((fromField.text?.isEmpty)!) {
+        else if unit == CalculatorMode.Length && !((fromField.text?.isEmpty)!) {
             switch fromlength {
                 case .Meters:
                     getL = LengthConversionKey.init(toUnits: tolength, fromUnits: fromlength)
@@ -223,7 +240,7 @@ class ViewController: UIViewController {
         }
         
         else {
-            print("Error, cannot have both boxes filled")
+            print("Error")
         }
     }
 }

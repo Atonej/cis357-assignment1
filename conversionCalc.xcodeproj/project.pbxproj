@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1002066C2155635500B48395 /* DecimalMinusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1002066B2155635500B48395 /* DecimalMinusTextField.swift */; };
 		10B0BFC12150191200212CB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0BFC02150191200212CB2 /* AppDelegate.swift */; };
 		10B0BFC32150191200212CB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0BFC22150191200212CB2 /* ViewController.swift */; };
 		10B0BFC62150191200212CB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B0BFC42150191200212CB2 /* Main.storyboard */; };
@@ -15,6 +14,8 @@
 		10B0BFCB2150191300212CB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B0BFC92150191300212CB2 /* LaunchScreen.storyboard */; };
 		10B0BFD62150191300212CB2 /* conversionCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0BFD52150191300212CB2 /* conversionCalcTests.swift */; };
 		10B0BFE12150191300212CB2 /* conversionCalcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0BFE02150191300212CB2 /* conversionCalcUITests.swift */; };
+		D4C3E973215745D6004C997D /* DecimalMinusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C3E972215745D6004C997D /* DecimalMinusTextField.swift */; };
+		D4C3E975215745F9004C997D /* UnitsAndModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C3E974215745F9004C997D /* UnitsAndModes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1002066B2155635500B48395 /* DecimalMinusTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecimalMinusTextField.swift; path = ../../DecimalMinusTextField/DecimalMinusDemo/DecimalMinusDemo/DecimalMinusTextField.swift; sourceTree = "<group>"; };
 		10B0BFBD2150191200212CB2 /* conversionCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = conversionCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10B0BFC02150191200212CB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10B0BFC22150191200212CB2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +49,8 @@
 		10B0BFDC2150191300212CB2 /* conversionCalcUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = conversionCalcUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10B0BFE02150191300212CB2 /* conversionCalcUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = conversionCalcUITests.swift; sourceTree = "<group>"; };
 		10B0BFE22150191300212CB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4C3E972215745D6004C997D /* DecimalMinusTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalMinusTextField.swift; sourceTree = "<group>"; };
+		D4C3E974215745F9004C997D /* UnitsAndModes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsAndModes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +101,11 @@
 		10B0BFBF2150191200212CB2 /* conversionCalc */ = {
 			isa = PBXGroup;
 			children = (
+				D4C3E974215745F9004C997D /* UnitsAndModes.swift */,
+				D4C3E972215745D6004C997D /* DecimalMinusTextField.swift */,
 				10B0BFC02150191200212CB2 /* AppDelegate.swift */,
 				10B0BFC22150191200212CB2 /* ViewController.swift */,
 				10B0BFC42150191200212CB2 /* Main.storyboard */,
-				1002066B2155635500B48395 /* DecimalMinusTextField.swift */,
 				10B0BFC72150191300212CB2 /* Assets.xcassets */,
 				10B0BFC92150191300212CB2 /* LaunchScreen.storyboard */,
 				10B0BFCC2150191300212CB2 /* Info.plist */,
@@ -259,8 +262,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1002066C2155635500B48395 /* DecimalMinusTextField.swift in Sources */,
+				D4C3E975215745F9004C997D /* UnitsAndModes.swift in Sources */,
 				10B0BFC32150191200212CB2 /* ViewController.swift in Sources */,
+				D4C3E973215745D6004C997D /* DecimalMinusTextField.swift in Sources */,
 				10B0BFC12150191200212CB2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

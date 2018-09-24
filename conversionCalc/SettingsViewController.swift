@@ -11,22 +11,32 @@ protocol SettingsViewControllerDelegate {
     func indicateSelection(vice: String)
 }
 class SettingsViewController: UIViewController {
-    var mode : CalculatorMode?
+    var mode : CalculatorMode!
+    
+//    var fromPress : Bool
+//    var toPress : Bool
+    
+    @IBOutlet weak var fromButton: UIButton!
+    @IBOutlet weak var toButton: UIButton!
 
     var pickerData : [String] = [String]()
     var selection : String = "Yards"
+    var selection2 : String = "Yards"
     var delegate : SettingsViewControllerDelegate?
     
     @IBOutlet weak var picker: UIPickerView!
+    @IBOutlet weak var picker2: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let detectTouch = UITapGestureRecognizer(target: self, action: #selector(self.dismissPicker))
         self.view.addGestureRecognizer(detectTouch)
+        
+
         // Do any additional setup after loading the view.
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,13 +44,21 @@ class SettingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueMainView" {
             if let destVC = segue.destination.childViewControllers[0] as? ViewController {
+                    destVC.currentMode()
                     mode = destVC.unit
             }
         }
     }
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+//        if segue.identifier == "segueMainView" {
+//             let destVC = (segue.destination as! ViewController )
+//                mode = destVC.unit
+//
+//        }
+//    }
     @IBAction func fromBevel(_ sender: UIButton) {
-        
+        self.picker.isHidden = false
         if mode == .Length {
             self.pickerData = ["Yards", "Meters", "Miles"]
 
@@ -52,8 +70,12 @@ class SettingsViewController: UIViewController {
         }
         self.picker.delegate = self
         self.picker.dataSource = self
+        
     }
     @IBAction func toBevel(_ sender: UIButton) {
+        self.picker2.isHidden = false
+
+
         if mode == .Length {
             self.pickerData = ["Yards", "Meters", "Miles"]
             
@@ -63,13 +85,20 @@ class SettingsViewController: UIViewController {
             self.pickerData = ["Gallons", "Liters", "Quarts"]
             
         }
-        self.picker.delegate = self
-        self.picker.dataSource = self
+        
+        self.picker2.delegate = self
+        self.picker2.dataSource = self
     }
     
     
     @objc func dismissPicker(){
-        self.view.endEditing(true)
+        //self.view.endEditing(true)
+        self.picker.isHidden = true
+        self.picker2.isHidden = true
+
+        
+        fromButton.setTitle(self.selection, for: UIControlState.normal)
+        toButton.setTitle(self.selection, for: UIControlState.normal)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -83,6 +112,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction func savePressedButton(_ sender: UIBarButtonItem) {
         viewWillDisappear(true)
+        self.dismiss(animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation
@@ -109,5 +139,6 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate{
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.selection = self.pickerData[row]
+        self.selection2 = self.pickerData[row]
     }
 }

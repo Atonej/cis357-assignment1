@@ -97,8 +97,19 @@ class ViewController: UIViewController, SettingsViewControllerDelegate {
             default:
             print("There is an error")
         }
+        
+        if (lorv.text?.contains("Length"))! {
+            unit = .Length
+        }
+        
+        else {
+            unit = .Volume
+        }
     }
 
+    @IBAction func settingsModeButton(_ sender: UIButton) {
+        currentMode()
+    }
     @IBAction func clearButtonPressed(_ sender: UIButton) {
         toField!.text = ""
         //toField!.clearsOnBeginEditing = true
@@ -107,7 +118,7 @@ class ViewController: UIViewController, SettingsViewControllerDelegate {
     }
     @IBAction func modeButtonPressed(_ sender: UIButton) {
         //change depending on length or volume
-        if (lorv.text?.contains("Length"))! {
+        if unit == .Length {
             lorv.text = lorv.text?.replacingOccurrences(of: "Length", with: "Volume")
             
             fromLabel!.text = "Gallons"
@@ -118,7 +129,7 @@ class ViewController: UIViewController, SettingsViewControllerDelegate {
             toField!.placeholder = prefix + toLabel!.text!
             //tovolume = .Liters
             
-            unit = CalculatorMode.Volume
+            unit = .Volume
         }
         
         else {
@@ -132,7 +143,7 @@ class ViewController: UIViewController, SettingsViewControllerDelegate {
             toField!.placeholder = prefix + toLabel!.text!
             //tolength = .Yards
 
-            unit = CalculatorMode.Length
+            unit = .Length
         }
     }
     
@@ -219,18 +230,18 @@ class ViewController: UIViewController, SettingsViewControllerDelegate {
         else if unit == CalculatorMode.Volume && !((toField.text?.isEmpty)!) {
             switch tovolume {
             case .Gallons:
-                getV = VolumeConversionKey.init(toUnits: tovolume, fromUnits: fromvolume)
+                getV = VolumeConversionKey.init(toUnits: fromvolume, fromUnits: tovolume)
                 cons = volumeConversionTable[getV]!
                 
                 ans = cons * Double(toField.text!)!
                 
             case .Liters:
-                getV = VolumeConversionKey.init(toUnits: tovolume, fromUnits: fromvolume)
+                getV = VolumeConversionKey.init(toUnits: fromvolume, fromUnits: tovolume)
                 cons = volumeConversionTable[getV]!
                 
                 ans = cons * Double(toField.text!)!
             case .Quarts:
-                getV = VolumeConversionKey.init(toUnits: tovolume, fromUnits: fromvolume)
+                getV = VolumeConversionKey.init(toUnits: fromvolume, fromUnits: tovolume)
                 cons = volumeConversionTable[getV]!
                 
                 ans = cons * Double(toField.text!)!

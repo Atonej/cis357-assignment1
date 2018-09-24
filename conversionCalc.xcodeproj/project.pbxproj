@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1002066E2159691900B48395 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1002066D2159691900B48395 /* SettingsViewController.swift */; };
 		10B0BFC12150191200212CB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0BFC02150191200212CB2 /* AppDelegate.swift */; };
 		10B0BFC62150191200212CB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B0BFC42150191200212CB2 /* Main.storyboard */; };
 		10B0BFC82150191300212CB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10B0BFC72150191300212CB2 /* Assets.xcassets */; };
@@ -15,7 +16,6 @@
 		10B0BFE12150191300212CB2 /* conversionCalcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0BFE02150191300212CB2 /* conversionCalcUITests.swift */; };
 		D4C3E973215745D6004C997D /* DecimalMinusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C3E972215745D6004C997D /* DecimalMinusTextField.swift */; };
 		D4C3E975215745F9004C997D /* UnitsAndModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C3E974215745F9004C997D /* UnitsAndModes.swift */; };
-		D4F301CA215896DC0009A47E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F301C9215896DB0009A47E /* SettingsViewController.swift */; };
 		D4F301CC215896F10009A47E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F301CB215896F10009A47E /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1002066D2159691900B48395 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		10B0BFBD2150191200212CB2 /* conversionCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = conversionCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10B0BFC02150191200212CB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10B0BFC52150191200212CB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		10B0BFE22150191300212CB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4C3E972215745D6004C997D /* DecimalMinusTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalMinusTextField.swift; sourceTree = "<group>"; };
 		D4C3E974215745F9004C997D /* UnitsAndModes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsAndModes.swift; sourceTree = "<group>"; };
-		D4F301C9215896DB0009A47E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D4F301CB215896F10009A47E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,8 +103,8 @@
 		10B0BFBF2150191200212CB2 /* conversionCalc */ = {
 			isa = PBXGroup;
 			children = (
+				1002066D2159691900B48395 /* SettingsViewController.swift */,
 				D4F301CB215896F10009A47E /* ViewController.swift */,
-				D4F301C9215896DB0009A47E /* SettingsViewController.swift */,
 				D4C3E974215745F9004C997D /* UnitsAndModes.swift */,
 				D4C3E972215745D6004C997D /* DecimalMinusTextField.swift */,
 				10B0BFC02150191200212CB2 /* AppDelegate.swift */,
@@ -269,8 +269,8 @@
 				D4F301CC215896F10009A47E /* ViewController.swift in Sources */,
 				D4C3E975215745F9004C997D /* UnitsAndModes.swift in Sources */,
 				D4C3E973215745D6004C997D /* DecimalMinusTextField.swift in Sources */,
+				1002066E2159691900B48395 /* SettingsViewController.swift in Sources */,
 				10B0BFC12150191200212CB2 /* AppDelegate.swift in Sources */,
-				D4F301CA215896DC0009A47E /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

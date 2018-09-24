@@ -8,10 +8,10 @@
 
 import UIKit
 protocol SettingsViewControllerDelegate {
-    func indicateSelection(vice: String)
+    func unitsSelection(from: String, to: String)
 }
 class SettingsViewController: UIViewController {
-    var mode : CalculatorMode!
+    var mode : CalculatorMode?
     
 //    var fromPress : Bool
 //    var toPress : Bool
@@ -21,14 +21,28 @@ class SettingsViewController: UIViewController {
 
     var pickerData : [String] = [String]()
     var selection : String = "Yards"
-    var selection2 : String = "Yards"
+    var selection2 : String = "Meters"
     var delegate : SettingsViewControllerDelegate?
     
-    @IBOutlet weak var picker: UIPickerView!
-    @IBOutlet weak var picker2: UIPickerView!
+    var whichLabel : Bool? //true is fromLabel, false is toLabel
+    var save : Bool?
     
+    @IBOutlet weak var picker: UIPickerView!
     override func viewDidLoad() {
+        //self.setNeedsFocusUpdate()
+        self.becomeFirstResponder()
+        
         super.viewDidLoad()
+        
+        if mode == .Volume {
+            selection = "Gallons"
+            selection2 = "Liters"
+            
+            fromButton.setTitle("Gallons", for: UIControlState.normal)
+            toButton.setTitle("Liters", for: UIControlState.normal)
+        }
+        
+        self.reloadInputViews()
         let detectTouch = UITapGestureRecognizer(target: self, action: #selector(self.dismissPicker))
         self.view.addGestureRecognizer(detectTouch)
         
@@ -41,14 +55,14 @@ class SettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueMainView" {
-            if let destVC = segue.destination.childViewControllers[0] as? ViewController {
-                    destVC.currentMode()
-                    mode = destVC.unit
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "segueMainView" {
+//            if let destVC = segue.destination.childViewControllers[0] as? ViewController {
+//                    destVC.currentMode()
+//                    mode = destVC.unit
+//            }
+//        }
+//    }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
 //        if segue.identifier == "segueMainView" {
@@ -59,7 +73,8 @@ class SettingsViewController: UIViewController {
 //    }
     @IBAction func fromBevel(_ sender: UIButton) {
         self.picker.isHidden = false
-        if mode == .Length {
+        whichLabel = true
+        if mode! == .Length {
             self.pickerData = ["Yards", "Meters", "Miles"]
 
         }
@@ -73,10 +88,10 @@ class SettingsViewController: UIViewController {
         
     }
     @IBAction func toBevel(_ sender: UIButton) {
-        self.picker2.isHidden = false
+        self.picker.isHidden = false
+        whichLabel = false
 
-
-        if mode == .Length {
+        if mode! == .Length {
             self.pickerData = ["Yards", "Meters", "Miles"]
             
         }
@@ -86,32 +101,45 @@ class SettingsViewController: UIViewController {
             
         }
         
-        self.picker2.delegate = self
-        self.picker2.dataSource = self
+        self.picker.delegate = self
+        self.picker.dataSource = self
     }
     
     
     @objc func dismissPicker(){
         //self.view.endEditing(true)
         self.picker.isHidden = true
-        self.picker2.isHidden = true
+        //self.picker2.isHidden = true
 
         
         fromButton.setTitle(self.selection, for: UIControlState.normal)
-        toButton.setTitle(self.selection, for: UIControlState.normal)
+        toButton.setTitle(self.selection2, for: UIControlState.normal)
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if let d = self.delegate {
-            d.indicateSelection(vice: selection)
+        if(self.save!){
+            print("I am in saving")
+            if let d = self.delegate {
+            print("from: \(self.selection) to: \(self.selection2)")
+            d.unitsSelection(from: self.selection, to: self.selection2)
+        
+        }
+        }
+        
+        else {
+            print ("not saving")
         }
     }
     @IBAction func cancelPressedButton(_ sender: UIBarButtonItem) {
+        self.save = false
+        //viewWillDisappear(true)
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func savePressedButton(_ sender: UIBarButtonItem) {
-        viewWillDisappear(true)
+        self.save = true
+        self.viewWillDisappear(true)
         self.dismiss(animated: true, completion: nil)
     }
     /*
@@ -125,6 +153,7 @@ class SettingsViewController: UIViewController {
     */
 
 }
+
 //learned from delegate video
 extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate{
     func numberOfComponents(in: UIPickerView) -> Int {
@@ -138,7 +167,11 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate{
         return self.pickerData[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if whichLabel == true {
         self.selection = self.pickerData[row]
+        }
+        else {
         self.selection2 = self.pickerData[row]
+        }
     }
 }

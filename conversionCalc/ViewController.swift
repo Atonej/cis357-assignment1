@@ -10,13 +10,39 @@ import UIKit
 
 
 class ViewController: UIViewController, SettingsViewControllerDelegate {
-    func indicateSelection(vice: String) {
-        self.fromLabel!.text = vice
+//    func indicateSelection(vice: String) {
+//        self.fromLabel!.text = vice
+//        self.fromField!.placeholder = prefix + fromLabel!.text!
+//        self.toLabel!.text = vice
+//        self.toField!.placeholder = prefix + toLabel!.text!
+//    }
+    func unitsSelection(from: String, to: String) {
+        
+        //If we are in length mode
+//        if (self.lorv.text?.contains("Length"))! {
+//            print("from: \(from) to: \(to)")
+//            fromLabel!.text = from
+//            fromField!.placeholder = prefix + fromLabel!.text!
+//            //fromvolume = .Gallons
+//
+//            toLabel!.text = to
+//            toField!.placeholder = prefix + toLabel!.text!
+//        }else{
+//            //If we are in volume
+//            print("from: \(from) to: \(to)")
+//            self.fromLabel.text = from
+//            self.toLabel.text   = to
+////            self.volumeToUnit   = to
+////            self.volumeFromUnit = from
+//
+//        }
+        print("I am now in selection")
+        self.fromLabel!.text = from
         self.fromField!.placeholder = prefix + fromLabel!.text!
-        self.toLabel!.text = vice
+        
+        self.toLabel!.text = to
         self.toField!.placeholder = prefix + toLabel!.text!
     }
-    
     
     var ans = 0.0
     var cons : Double = 0
@@ -57,12 +83,32 @@ class ViewController: UIViewController, SettingsViewControllerDelegate {
         self.view.endEditing(true)
     }
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let dest = segue.destination as? SettingsViewController {
+//            dest.delegate = self
+//        }
+//    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dest = segue.destination as? SettingsViewController {
-            dest.delegate = self
+        if segue.identifier == "segueMainView" {
+            if let destVC = segue.destination.childViewControllers[0] as? SettingsViewController {
+                currentMode()
+                destVC.delegate = self
+                if(unit == .Length) {
+                    
+                  destVC.mode = unit
+//                  destVC.fromButton.setTitle("Yards", for: UIControlState.normal)
+//                  destVC.toButton.setTitle("Meters", for: UIControlState.normal)
+
+                }
+                
+                else {
+                    destVC.mode = unit
+//                    destVC.fromButton.setTitle("Gallons", for: UIControlState.normal)
+//                    destVC.toButton.setTitle("Liters", for: UIControlState.normal)
+                }
+            }
         }
     }
-    
     func currentMode(){
         switch fromLabel.text{
         case "Yards":
@@ -146,6 +192,8 @@ class ViewController: UIViewController, SettingsViewControllerDelegate {
             unit = .Length
         }
     }
+    
+    
     
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
         //check the current mode setup
